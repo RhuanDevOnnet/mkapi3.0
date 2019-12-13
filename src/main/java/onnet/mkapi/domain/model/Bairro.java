@@ -6,18 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "mk_logradouros")
-public class Logradouro {
+@Table(name = "mk_bairros")
+public class Bairro {
 
 	@Id
-	@Column(name = "codlogradouro")
+	@Column(name = "codbairro")
 	private long id;
 
-	@Column(name = "logradouro")
-	private String logradouro;
-
-	@Column(name = "cep")
-	private String cep;
+	@Column(name = "bairro")
+	private String bairro;
 
 	public long getId() {
 		return id;
@@ -27,25 +24,17 @@ public class Logradouro {
 		this.id = id;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
+	public String getBairro() {
+		return bairro;
 	}
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	@Override
 	public String toString() {
-		return "Logradouro [id=" + id + ", logradouro=" + logradouro + ", cep=" + cep + "]";
+		return "Bairro [id=" + id + ", bairro=" + bairro + "]";
 	}
 
 	@Override
@@ -64,7 +53,7 @@ public class Logradouro {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Logradouro other = (Logradouro) obj;
+		Bairro other = (Bairro) obj;
 		if (id != other.id)
 			return false;
 		return true;
