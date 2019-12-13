@@ -31,4 +31,6 @@ public class ViUsuarioResource {
 		
 		return new ResponseEntity<List<ViUsuario>>(lstUsr, HttpStatus.OK);
 	}
+	
+	//implementation of resource
 }
