@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="mk_planos_acesso_tipos")
 public class PlanoAcessoTipo {	
-
+	
 	@Id
 	@Column(name="codplanoacessotipo")
 	private long id;
