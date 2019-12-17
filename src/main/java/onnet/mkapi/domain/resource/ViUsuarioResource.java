@@ -14,7 +14,7 @@ import onnet.mkapi.domain.model.ViUsuario;
 import onnet.mkapi.domain.repository.ViUsuarioRepository;
 
 @RestController
-@RequestMapping(value = "/usr")
+@RequestMapping(value = "/vi_usuario")
 public class ViUsuarioResource {
 	
 	private ViUsuarioRepository _viUsuarioRepository;

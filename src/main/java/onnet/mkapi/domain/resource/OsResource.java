@@ -10,34 +10,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import onnet.mkapi.domain.model.Estado;
-import onnet.mkapi.domain.repository.EstadoRepository;
+import onnet.mkapi.domain.model.Os;
+import onnet.mkapi.domain.repository.OsRepository;
 
 @RestController
-@RequestMapping(value = "/estado")
-public class EstadoResource {
-
-private EstadoRepository _estadoRepository;
+@RequestMapping(value = "/os")
+public class OsResource {
 	
-	public EstadoResource(EstadoRepository estadoRepository) {
-		_estadoRepository = estadoRepository;
+	private OsRepository _osRepository;
+	
+	public OsResource(OsRepository osRepository) {
+		_osRepository = osRepository;
 	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping
-	public ResponseEntity<List<Estado>> getEstado(){
-		List<Estado> lstEstado = _estadoRepository.findAll();
+	public ResponseEntity<List<Os>> getOs(){
+		List<Os> lstOs = _osRepository.findAll();
 		
-		if(lstEstado.isEmpty()) {
-			return new ResponseEntity<List<Estado>>(HttpStatus.NO_CONTENT);
+		if(lstOs.isEmpty()) {
+			return new ResponseEntity<List<Os>>(HttpStatus.NO_CONTENT);
 		}
 		
-		return new ResponseEntity<List<Estado>>(lstEstado, HttpStatus.OK);
+		return new ResponseEntity<List<Os>>(lstOs, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Estado> findById(@PathVariable long id){
-		return _estadoRepository.findById(id)
+	public ResponseEntity<Os> findById(@PathVariable long id){
+		return _osRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
