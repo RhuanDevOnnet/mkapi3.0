@@ -14,10 +14,7 @@ public class Estado {
 	private long id;
 	
 	@Column(name = "siglaestado")
-	private String siglaEstado;
-	
-	@Column(name = "nomeestado")
-	private String nomeEstado;
+	private String sigla;
 
 	public long getId() {
 		return id;
@@ -27,20 +24,12 @@ public class Estado {
 		this.id = id;
 	}
 
-	public String getSiglaEstado() {
-		return siglaEstado;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setSiglaEstado(String siglaEstado) {
-		this.siglaEstado = siglaEstado;
-	}
-
-	public String getNomeEstado() {
-		return nomeEstado;
-	}
-
-	public void setNomeEstado(String nomeEstado) {
-		this.nomeEstado = nomeEstado;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	@Override
@@ -67,7 +56,7 @@ public class Estado {
 
 	@Override
 	public String toString() {
-		return "Estado [id=" + id + ", siglaEstado=" + siglaEstado + ", nomeEstado=" + nomeEstado + "]";
+		return "Estado [id=" + id + ", sigla=" + sigla + "]";
 	}
 	
 }
