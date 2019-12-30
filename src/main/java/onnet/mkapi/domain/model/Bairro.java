@@ -15,6 +15,7 @@ public class Bairro {
 
 	@Column(name = "bairro")
 	private String bairro;
+	
 
 	public long getId() {
 		return id;
