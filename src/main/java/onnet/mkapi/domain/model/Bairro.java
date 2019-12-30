@@ -20,4 +20,5 @@ public class Bairro {
 	@Column(name = "bairro")
 	@EqualsAndHashCode.Exclude private String bairro;
 
+	
 }
