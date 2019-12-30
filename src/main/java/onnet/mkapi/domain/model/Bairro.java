@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Data
+@Getter @Setter @ToString @EqualsAndHashCode(exclude= {"bairro"})
 @Table(name = "mk_bairros")
 public class Bairro {
 
@@ -18,7 +20,7 @@ public class Bairro {
 	private long id;
 
 	@Column(name = "bairro")
-	@EqualsAndHashCode.Exclude private String bairro;
+	private String bairro;
 
 	
 }
