@@ -42,11 +42,4 @@ public class BairroResource {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<Bairro> findById(@PathVariable long id){
-		return bairroRepository.findById(id)
-				.map(record -> ResponseEntity.ok().body(record))
-				.orElse(ResponseEntity.notFound().build());
-	}
-	
 }
