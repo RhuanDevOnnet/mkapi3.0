@@ -23,7 +23,6 @@ public class CrmOperadoresResource {
 		_crmOperadoresRepository = crmOperadoresRepository;
 	}
 	
-	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<CrmOperadores>> getCrmOperadores(){
@@ -32,13 +31,12 @@ public class CrmOperadoresResource {
 		if(lstCrmOperadores.isEmpty()) {
 			return new ResponseEntity<List<CrmOperadores>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<CrmOperadores>>(lstCrmOperadores, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<CrmOperadores> findById(@PathVariable long id) {
-		return _crmOperadoresRepository.findById(id)
+	@GetMapping(path = "{id}")
+	public ResponseEntity<CrmOperadores> findById(@PathVariable long id){
+		return _crmOperadorRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}

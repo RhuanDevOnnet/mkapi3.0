@@ -23,16 +23,14 @@ public class PlanoAcessoTipoResource {
 		_planoAcessoTipoRepository = planoAcessoTipoRepository;
 	}
 	
-	
 	@CrossOrigin(origins = "*")
-	@GetMapping
-	public ResponseEntity<List<PlanoAcessoTipo>> getPlanoAcessoTipo(){
-		List<PlanoAcessoTipo> lstPlanoAcessoTipo = _planoAcessoTipoRepository.findAll();
+	@GetMapping(path = "")
+	public ResponseEntity<List<PlanoAcessoTipo>> getPlanoAcesso(){
+		List<PlanoAcessoTipo> lstPlanoAcessoTipo = this._planoAcessoTipoRepository.findAll();
 		
 		if(lstPlanoAcessoTipo.isEmpty()) {
 			return new ResponseEntity<List<PlanoAcessoTipo>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<PlanoAcessoTipo>>(lstPlanoAcessoTipo, HttpStatus.OK);
 	}
 	
@@ -42,4 +40,5 @@ public class PlanoAcessoTipoResource {
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
+
 }

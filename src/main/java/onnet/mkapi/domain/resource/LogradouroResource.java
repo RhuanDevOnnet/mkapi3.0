@@ -23,7 +23,6 @@ public class LogradouroResource {
 		_logradouroRepository = logradouroRepository;
 	}
 	
-	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<Logradouro>> getLogradouro(){
@@ -32,12 +31,11 @@ public class LogradouroResource {
 		if(lstLogradouro.isEmpty()) {
 			return new ResponseEntity<List<Logradouro>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<Logradouro>>(lstLogradouro, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Logradouro> findById(@PathVariable long id) {
+	public ResponseEntity<Logradouro> findById(@PathVariable long id){
 		return _logradouroRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());

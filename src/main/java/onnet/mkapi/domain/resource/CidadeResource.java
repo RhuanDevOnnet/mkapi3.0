@@ -31,12 +31,11 @@ public class CidadeResource {
 		if(lstCidade.isEmpty()) {
 			return new ResponseEntity<List<Cidade>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<Cidade>>(lstCidade, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<Cidade> findById(@PathVariable long id) {
+	@GetMapping(path = "{id}")
+	public ResponseEntity<Cidade> findById(@PathVariable long id){
 		return _cidadeRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());

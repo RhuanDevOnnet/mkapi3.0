@@ -23,7 +23,6 @@ public class FaturamentoRegrasResource {
 		_faturamentoRegrasRepository  = faturamentoRegrasRepository;
 	}
 	
-	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<FaturamentoRegras>> getFaturamentoRegras(){
@@ -31,8 +30,7 @@ public class FaturamentoRegrasResource {
 		
 		if(lstFaturamentoRegras.isEmpty()) {
 			return new ResponseEntity<List<FaturamentoRegras>>(HttpStatus.NO_CONTENT);
-		}
-		
+    }		
 		return new ResponseEntity<List<FaturamentoRegras>>(lstFaturamentoRegras, HttpStatus.OK);
 	}
 	

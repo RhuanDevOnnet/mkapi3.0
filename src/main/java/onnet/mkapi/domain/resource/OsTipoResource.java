@@ -23,8 +23,6 @@ public class OsTipoResource {
 		_osTipoRepository = osTipoRepository;
 	}
 	
-	
-	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<OsTipo>> getOsTipo(){
@@ -33,7 +31,6 @@ public class OsTipoResource {
 		if(lstOsTipo.isEmpty()) {
 			return new ResponseEntity<List<OsTipo>>(HttpStatus.NO_CONTENT);
 		}
-		
 		return new ResponseEntity<List<OsTipo>>(lstOsTipo, HttpStatus.OK);
 	}
 	
