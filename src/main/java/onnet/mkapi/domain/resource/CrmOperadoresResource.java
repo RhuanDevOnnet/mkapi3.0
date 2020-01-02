@@ -17,18 +17,16 @@ import onnet.mkapi.domain.repository.CrmOperadoresRepository;
 @RequestMapping(value = "/crm_operador")
 public class CrmOperadoresResource {
 
-	
-	private CrmOperadoresRepository _crmOperadorRepository;
+	private CrmOperadoresRepository _crmOperadoresRepository;
 	
 	public CrmOperadoresResource(CrmOperadoresRepository crmOperadoresRepository) {
-		_crmOperadorRepository = crmOperadoresRepository;
+		_crmOperadoresRepository = crmOperadoresRepository;
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
+	@GetMapping
 	public ResponseEntity<List<CrmOperadores>> getCrmOperadores(){
-		
-		List<CrmOperadores> lstCrmOperadores = this._crmOperadorRepository.findAll();
+		List<CrmOperadores> lstCrmOperadores = _crmOperadoresRepository.findAll();
 		
 		if(lstCrmOperadores.isEmpty()) {
 			return new ResponseEntity<List<CrmOperadores>>(HttpStatus.NO_CONTENT);

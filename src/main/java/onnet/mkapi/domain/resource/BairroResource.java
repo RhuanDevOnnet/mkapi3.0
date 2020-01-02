@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,20 +17,29 @@ import onnet.mkapi.domain.repository.BairroRepository;
 @RequestMapping(value = "/bairro")
 public class BairroResource {
 
-	@Autowired
-	private BairroRepository bairroRepository;
+	private BairroRepository _bairroRepository;
+	
+	public BairroResource(BairroRepository bairroRepository) {
+		_bairroRepository = bairroRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
-	public ResponseEntity<List<Bairro>> getBairros(){
+	@GetMapping
+	public ResponseEntity<List<Bairro>> getBairro(){
+		List<Bairro> lstBairro = _bairroRepository.findAll();
 		
-		List<Bairro> lstBairros = this.bairroRepository.findAll();
-		
-		if(lstBairros.isEmpty()) {
+		if(lstBairro.isEmpty()) {
 			return new ResponseEntity<List<Bairro>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Bairro>>(lstBairros, HttpStatus.OK);
 		
+		return new ResponseEntity<List<Bairro>>(lstBairro, HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Bairro> findById(@PathVariable long id){
+		return _bairroRepository.findById(id)
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping(path = "/{id}")

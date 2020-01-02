@@ -24,15 +24,14 @@ public class LogradouroResource {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
+	@GetMapping
 	public ResponseEntity<List<Logradouro>> getLogradouro(){
-		List<Logradouro> lstLogradouro = this._logradouroRepository.findAll();
+		List<Logradouro> lstLogradouro = _logradouroRepository.findAll();
 		
 		if(lstLogradouro.isEmpty()) {
 			return new ResponseEntity<List<Logradouro>>(HttpStatus.NO_CONTENT);
 		}
-		
-		return new ResponseEntity<List<Logradouro>>(lstLogradouro, HttpStatus.OK);	
+		return new ResponseEntity<List<Logradouro>>(lstLogradouro, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}")

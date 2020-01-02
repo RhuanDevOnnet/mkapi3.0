@@ -24,10 +24,9 @@ public class OsTipoResource {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
+	@GetMapping
 	public ResponseEntity<List<OsTipo>> getOsTipo(){
-		
-		List<OsTipo> lstOsTipo = this._osTipoRepository.findAll();
+		List<OsTipo> lstOsTipo = _osTipoRepository.findAll();
 		
 		if(lstOsTipo.isEmpty()) {
 			return new ResponseEntity<List<OsTipo>>(HttpStatus.NO_CONTENT);
@@ -36,10 +35,10 @@ public class OsTipoResource {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<OsTipo> findById(@PathVariable long id){
+	public ResponseEntity<OsTipo> findById(@PathVariable long id) {
 		return _osTipoRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 }

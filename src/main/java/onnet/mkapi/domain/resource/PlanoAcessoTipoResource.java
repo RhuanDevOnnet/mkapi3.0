@@ -18,7 +18,7 @@ import onnet.mkapi.domain.repository.PlanoAcessoTipoRepository;
 public class PlanoAcessoTipoResource {
 	
 	private PlanoAcessoTipoRepository _planoAcessoTipoRepository;
-
+	
 	public PlanoAcessoTipoResource(PlanoAcessoTipoRepository planoAcessoTipoRepository) {
 		_planoAcessoTipoRepository = planoAcessoTipoRepository;
 	}
@@ -26,7 +26,6 @@ public class PlanoAcessoTipoResource {
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<PlanoAcessoTipo>> getPlanoAcesso(){
-		
 		List<PlanoAcessoTipo> lstPlanoAcessoTipo = this._planoAcessoTipoRepository.findAll();
 		
 		if(lstPlanoAcessoTipo.isEmpty()) {
@@ -36,10 +35,10 @@ public class PlanoAcessoTipoResource {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<PlanoAcessoTipo> findById(@PathVariable long id){
+	public ResponseEntity<PlanoAcessoTipo> findById(@PathVariable long id) {
 		return _planoAcessoTipoRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 }

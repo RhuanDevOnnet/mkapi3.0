@@ -24,11 +24,9 @@ public class CidadeResource {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
-	
+	@GetMapping
 	public ResponseEntity<List<Cidade>> getCidade(){
-		
-		List<Cidade> lstCidade = this._cidadeRepository.findAll();
+		List<Cidade> lstCidade = _cidadeRepository.findAll();
 		
 		if(lstCidade.isEmpty()) {
 			return new ResponseEntity<List<Cidade>>(HttpStatus.NO_CONTENT);

@@ -18,20 +18,19 @@ import onnet.mkapi.domain.repository.FaturamentoRegrasRepository;
 public class FaturamentoRegrasResource {
 
 	private FaturamentoRegrasRepository _faturamentoRegrasRepository;
-	
+		
 	public FaturamentoRegrasResource(FaturamentoRegrasRepository faturamentoRegrasRepository) {
-		_faturamentoRegrasRepository = faturamentoRegrasRepository;
+		_faturamentoRegrasRepository  = faturamentoRegrasRepository;
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(path = "")
+	@GetMapping
 	public ResponseEntity<List<FaturamentoRegras>> getFaturamentoRegras(){
-		
-		List<FaturamentoRegras> lstFaturamentoRegras = this._faturamentoRegrasRepository.findAll();
+		List<FaturamentoRegras> lstFaturamentoRegras = _faturamentoRegrasRepository.findAll();
 		
 		if(lstFaturamentoRegras.isEmpty()) {
 			return new ResponseEntity<List<FaturamentoRegras>>(HttpStatus.NO_CONTENT);
-		}
+    }		
 		return new ResponseEntity<List<FaturamentoRegras>>(lstFaturamentoRegras, HttpStatus.OK);
 	}
 	
