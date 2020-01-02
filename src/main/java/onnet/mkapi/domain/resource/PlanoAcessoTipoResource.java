@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,14 +17,17 @@ import onnet.mkapi.domain.repository.PlanoAcessoTipoRepository;
 @RequestMapping(value="/plano_acesso_tipo")
 public class PlanoAcessoTipoResource {
 	
-	@Autowired
-	private PlanoAcessoTipoRepository planoAcessoTipoRepository;
+	private PlanoAcessoTipoRepository _planoAcessoTipoRepository;
+
+	public PlanoAcessoTipoResource(PlanoAcessoTipoRepository planoAcessoTipoRepository) {
+		_planoAcessoTipoRepository = planoAcessoTipoRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<PlanoAcessoTipo>> getPlanoAcesso(){
 		
-		List<PlanoAcessoTipo> lstPlanoAcessoTipo = this.planoAcessoTipoRepository.findAll();
+		List<PlanoAcessoTipo> lstPlanoAcessoTipo = this._planoAcessoTipoRepository.findAll();
 		
 		if(lstPlanoAcessoTipo.isEmpty()) {
 			return new ResponseEntity<List<PlanoAcessoTipo>>(HttpStatus.NO_CONTENT);
@@ -35,7 +37,7 @@ public class PlanoAcessoTipoResource {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<PlanoAcessoTipo> findById(@PathVariable long id){
-		return planoAcessoTipoRepository.findById(id)
+		return _planoAcessoTipoRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}

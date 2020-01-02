@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,14 +17,18 @@ import onnet.mkapi.domain.repository.CrmOperadoresRepository;
 @RequestMapping(value = "/crm_operador")
 public class CrmOperadoresResource {
 
-	@Autowired
-	private CrmOperadoresRepository crmOperadorRepository;
+	
+	private CrmOperadoresRepository _crmOperadorRepository;
+	
+	public CrmOperadoresResource(CrmOperadoresRepository crmOperadoresRepository) {
+		_crmOperadorRepository = crmOperadoresRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<CrmOperadores>> getCrmOperadores(){
 		
-		List<CrmOperadores> lstCrmOperadores = this.crmOperadorRepository.findAll();
+		List<CrmOperadores> lstCrmOperadores = this._crmOperadorRepository.findAll();
 		
 		if(lstCrmOperadores.isEmpty()) {
 			return new ResponseEntity<List<CrmOperadores>>(HttpStatus.NO_CONTENT);
@@ -35,7 +38,7 @@ public class CrmOperadoresResource {
 	
 	@GetMapping(path = "{id}")
 	public ResponseEntity<CrmOperadores> findById(@PathVariable long id){
-		return crmOperadorRepository.findById(id)
+		return _crmOperadorRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}

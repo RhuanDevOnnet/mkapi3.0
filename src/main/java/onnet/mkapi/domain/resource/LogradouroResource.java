@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,13 +17,16 @@ import onnet.mkapi.domain.repository.LogradouroRepository;
 @RequestMapping(value = "/logradouro")
 public class LogradouroResource {
 	
-	@Autowired
-	private LogradouroRepository logradouroRepository;
+	private LogradouroRepository _logradouroRepository;
+	
+	public LogradouroResource(LogradouroRepository logradouroRepository) {
+		_logradouroRepository = logradouroRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<Logradouro>> getLogradouro(){
-		List<Logradouro> lstLogradouro = this.logradouroRepository.findAll();
+		List<Logradouro> lstLogradouro = this._logradouroRepository.findAll();
 		
 		if(lstLogradouro.isEmpty()) {
 			return new ResponseEntity<List<Logradouro>>(HttpStatus.NO_CONTENT);
@@ -35,7 +37,7 @@ public class LogradouroResource {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Logradouro> findById(@PathVariable long id){
-		return logradouroRepository.findById(id)
+		return _logradouroRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
