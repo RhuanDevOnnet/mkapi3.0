@@ -23,6 +23,7 @@ public class CrmOperadoresResource {
 		_crmOperadoresRepository = crmOperadoresRepository;
 	}
 	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<CrmOperadores>> getCrmOperadores(){

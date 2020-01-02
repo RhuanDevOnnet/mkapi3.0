@@ -23,6 +23,7 @@ public class FaturamentoRegrasResource {
 		_faturamentoRegrasRepository  = faturamentoRegrasRepository;
 	}
 	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<FaturamentoRegras>> getFaturamentoRegras(){

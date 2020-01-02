@@ -23,6 +23,7 @@ public class PlanoAcessoTipoResource {
 		_planoAcessoTipoRepository = planoAcessoTipoRepository;
 	}
 	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<PlanoAcessoTipo>> getPlanoAcessoTipo(){

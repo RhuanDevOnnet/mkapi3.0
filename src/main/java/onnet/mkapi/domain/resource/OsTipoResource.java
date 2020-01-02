@@ -23,6 +23,8 @@ public class OsTipoResource {
 		_osTipoRepository = osTipoRepository;
 	}
 	
+	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<OsTipo>> getOsTipo(){

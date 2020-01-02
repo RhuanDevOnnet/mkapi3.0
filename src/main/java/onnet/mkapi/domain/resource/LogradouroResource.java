@@ -23,6 +23,7 @@ public class LogradouroResource {
 		_logradouroRepository = logradouroRepository;
 	}
 	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public ResponseEntity<List<Logradouro>> getLogradouro(){
