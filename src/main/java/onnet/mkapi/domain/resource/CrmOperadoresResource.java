@@ -36,7 +36,7 @@ public class CrmOperadoresResource {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<CrmOperadores> findById(@PathVariable long id){
-		return _crmOperadorRepository.findById(id)
+		return _crmOperadoresRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
