@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,14 +17,17 @@ import onnet.mkapi.domain.repository.OsTipoRepository;
 @RequestMapping(value = "/os_tipo")
 public class OsTipoResource {
 
-	@Autowired
-	private OsTipoRepository osTipoRepository;
+	private OsTipoRepository _osTipoRepository;
+	
+	public OsTipoResource(OsTipoRepository osTipoRepository) {
+		_osTipoRepository = osTipoRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<OsTipo>> getOsTipo(){
 		
-		List<OsTipo> lstOsTipo = this.osTipoRepository.findAll();
+		List<OsTipo> lstOsTipo = this._osTipoRepository.findAll();
 		
 		if(lstOsTipo.isEmpty()) {
 			return new ResponseEntity<List<OsTipo>>(HttpStatus.NO_CONTENT);
@@ -35,7 +37,7 @@ public class OsTipoResource {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<OsTipo> findById(@PathVariable long id){
-		return osTipoRepository.findById(id)
+		return _osTipoRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}

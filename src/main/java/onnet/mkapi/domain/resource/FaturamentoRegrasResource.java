@@ -2,7 +2,6 @@ package onnet.mkapi.domain.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,14 +17,17 @@ import onnet.mkapi.domain.repository.FaturamentoRegrasRepository;
 @RequestMapping(value = "/faturamento_regras")
 public class FaturamentoRegrasResource {
 
-	@Autowired
-	private FaturamentoRegrasRepository faturamentoRegrasRepository;
+	private FaturamentoRegrasRepository _faturamentoRegrasRepository;
+	
+	public FaturamentoRegrasResource(FaturamentoRegrasRepository faturamentoRegrasRepository) {
+		_faturamentoRegrasRepository = faturamentoRegrasRepository;
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(path = "")
 	public ResponseEntity<List<FaturamentoRegras>> getFaturamentoRegras(){
 		
-		List<FaturamentoRegras> lstFaturamentoRegras = this.faturamentoRegrasRepository.findAll();
+		List<FaturamentoRegras> lstFaturamentoRegras = this._faturamentoRegrasRepository.findAll();
 		
 		if(lstFaturamentoRegras.isEmpty()) {
 			return new ResponseEntity<List<FaturamentoRegras>>(HttpStatus.NO_CONTENT);
@@ -35,7 +37,7 @@ public class FaturamentoRegrasResource {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<FaturamentoRegras> findById(@PathVariable long id){
-		return faturamentoRegrasRepository.findById(id)
+		return _faturamentoRegrasRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
