@@ -36,7 +36,7 @@ public class CrmOperadoresResource {
 		return new ResponseEntity<List<CrmOperadores>>(lstCrmOperadores, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "{id}")
+	@GetMapping(path = "/{id}")
 	public ResponseEntity<CrmOperadores> findById(@PathVariable long id){
 		return _crmOperadorRepository.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
