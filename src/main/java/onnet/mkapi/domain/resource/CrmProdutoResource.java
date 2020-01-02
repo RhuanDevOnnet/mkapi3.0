@@ -14,7 +14,7 @@ import onnet.mkapi.domain.model.CrmProduto;
 import onnet.mkapi.domain.repository.CrmProdutoRepository;
 
 @RestController
-@RequestMapping(value = "/crmProduto" )
+@RequestMapping(value = "/crm_produto" )
 public class CrmProdutoResource {
 	private CrmProdutoRepository _crmProdutoRepository;
 	
