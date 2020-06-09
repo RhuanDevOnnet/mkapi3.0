@@ -25,7 +25,7 @@ public class PlanoAcesso {
 	private String vel_down;
 	
 	@Column(name = "vlr_mensalidade")
-	private String vlr_mensalidade;
+	private double vlr_mensalidade;
 	
 	@ManyToOne
 	@JoinColumn(name = "tipo")
@@ -63,11 +63,11 @@ public class PlanoAcesso {
 		this.vel_down = vel_down;
 	}
 
-	public String getVlr_mensalidade() {
+	public double getVlr_mensalidade() {
 		return vlr_mensalidade;
 	}
 
-	public void setVlr_mensalidade(String vlr_mensalidade) {
+	public void setVlr_mensalidade(double vlr_mensalidade) {
 		this.vlr_mensalidade = vlr_mensalidade;
 	}
 

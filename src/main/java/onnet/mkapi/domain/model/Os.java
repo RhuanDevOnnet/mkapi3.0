@@ -22,6 +22,18 @@ public class Os {
 	
 	@Column(name = "defeito_associado")
 	private String defeitoAssociado;
+
+	@Column(name = "ultimo_status_app_mk")
+	private String ultimoStatusAppMk;
+
+	@Column(name = "ultimo_status_app_mk_tx")
+	private String ultimoStatusAppMkTx;
+
+	@Column(name = "fechamento_tecnico")
+	private String fechamentoTecnico;
+
+	@Column(name = "encerrado")
+	private String encerrado;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente")
@@ -30,6 +42,7 @@ public class Os {
 	@ManyToOne
 	@JoinColumn(name = "tipo_os")
 	private OsTipo tipoos;
+
 
 	public long getId() {
 		return id;
@@ -53,6 +66,38 @@ public class Os {
 
 	public void setDefeitoAssociado(String defeitoAssociado) {
 		this.defeitoAssociado = defeitoAssociado;
+	}
+
+	public String getUltimoStatusAppMk() {
+		return ultimoStatusAppMk;
+	}
+
+	public void setUltimoStatusAppMk(String ultimoStatusAppMk) {
+		this.ultimoStatusAppMk = ultimoStatusAppMk;
+	}
+
+	public String getUltimoStatusAppMkTx() {
+		return ultimoStatusAppMkTx;
+	}
+
+	public void setUltimoStatusAppMkTx(String ultimoStatusAppMkTx) {
+		this.ultimoStatusAppMkTx = ultimoStatusAppMkTx;
+	}
+
+	public String getFechamentoTecnico() {
+		return fechamentoTecnico;
+	}
+
+	public void setFechamentoTecnico(String fechamentoTecnico) {
+		this.fechamentoTecnico = fechamentoTecnico;
+	}
+
+	public String getEncerrado() {
+		return encerrado;
+	}
+
+	public void setEncerrado(String encerrado) {
+		this.encerrado = encerrado;
 	}
 
 	public Pessoa getCliente() {
@@ -95,8 +140,16 @@ public class Os {
 
 	@Override
 	public String toString() {
-		return "Os [id=" + id + ", dataAbertura=" + dataAbertura + ", defeitoAssociado=" + defeitoAssociado
-				+ ", cliente=" + cliente + ", tipoos=" + tipoos + "]";
+		return "Os{" +
+				"id=" + id +
+				", dataAbertura=" + dataAbertura +
+				", defeitoAssociado='" + defeitoAssociado + '\'' +
+				", ultimoStatusAppMk='" + ultimoStatusAppMk + '\'' +
+				", ultimoStatusAppMkTx='" + ultimoStatusAppMkTx + '\'' +
+				", fechamentoTecnico='" + fechamentoTecnico + '\'' +
+				", encerrado='" + encerrado + '\'' +
+				", cliente=" + cliente +
+				", tipoos=" + tipoos +
+				'}';
 	}
-
 }
