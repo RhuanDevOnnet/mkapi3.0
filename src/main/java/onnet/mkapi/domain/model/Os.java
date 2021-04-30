@@ -42,7 +42,10 @@ public class Os {
 	@ManyToOne
 	@JoinColumn(name = "tipo_os")
 	private OsTipo tipoos;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "cd_cidade")
+	private Cidade cidade;
 
 	public long getId() {
 		return id;
@@ -116,6 +119,14 @@ public class Os {
 		this.tipoos = tipoos;
 	}
 
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,7 +148,7 @@ public class Os {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Os{" +
@@ -150,6 +161,7 @@ public class Os {
 				", encerrado='" + encerrado + '\'' +
 				", cliente=" + cliente +
 				", tipoos=" + tipoos +
+				", cidade=" + cidade +
 				'}';
 	}
 }

@@ -16,6 +16,9 @@ public class Cidade {
 	@Column(name = "cidade")
 	private String cidade;
 
+	@Column(name = "ibge")
+	private String ibge;
+
 	public long getId() {
 		return id;
 	}
@@ -30,6 +33,14 @@ public class Cidade {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getIbge() {
+		return ibge;
+	}
+
+	public void setIbge(String ibge) {
+		this.ibge = ibge;
 	}
 
 	@Override
@@ -56,7 +67,10 @@ public class Cidade {
 
 	@Override
 	public String toString() {
-		return "Cidade [id=" + id + ", cidade=" + cidade + "]";
+		return "Cidade{" +
+				"id=" + id +
+				", cidade='" + cidade + '\'' +
+				", ibge='" + ibge + '\'' +
+				'}';
 	}
-	
 }

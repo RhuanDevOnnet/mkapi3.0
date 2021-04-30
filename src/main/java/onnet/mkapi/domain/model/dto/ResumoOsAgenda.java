@@ -4,10 +4,12 @@ public class ResumoOsAgenda {
 
     private String cliente;
     private String tipoos;
+    private String cidade;
 
-    public ResumoOsAgenda(String cliente, String tipoos){
+    public ResumoOsAgenda(String cliente, String tipoos, String cidade){
         this.cliente = cliente;
         this.tipoos = tipoos;
+        this.cidade = cidade;
     }
 
     public String getCliente() {
@@ -26,11 +28,20 @@ public class ResumoOsAgenda {
         this.tipoos = tipoos;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public String toString() {
         return "ResumoOsAgenda{" +
                 "cliente='" + cliente + '\'' +
                 ", tipoos='" + tipoos + '\'' +
+                ", cidade='" + cidade + '\'' +
                 '}';
     }
 }

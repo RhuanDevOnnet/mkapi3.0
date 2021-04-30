@@ -119,7 +119,15 @@ public class ContratoRepositoryImpl implements ContratoRepositoryQuery {
     public ResumoOsAgenda searchOsNumber(long os) {
         StringBuilder consulta = new StringBuilder();
 
-        consulta.append("SELECT new onnet.mkapi.domain.model.dto.ResumoOsAgenda(pessoa.nome , ostipo.descricao) ").append("FROM Pessoa pessoa, Os os, OsTipo ostipo ").append("WHERE os.cliente = pessoa.id ").append("AND ").append("os.tipoos = ostipo.id ").append("AND ").append("os.id = :os ");
+        consulta.append("SELECT new onnet.mkapi.domain.model.dto.ResumoOsAgenda(pessoa.nome , ostipo.descricao, cidade.cidade) ")
+        .append("FROM Pessoa pessoa, Os os, OsTipo ostipo, Cidade cidade ")
+        .append("WHERE os.cliente = pessoa.id ")
+        .append("AND ")
+        .append("os.tipoos = ostipo.id ")
+        .append("AND ")
+        .append("os.id = :os ")
+        .append("AND ")
+        .append("os.cidade = cidade.id ");
 
         try{
             return this.manager.createQuery(consulta.toString(), ResumoOsAgenda.class)
