@@ -6,6 +6,8 @@ import onnet.mkapi.domain.repository.query.ContratoRepositoryQuery;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -60,8 +62,6 @@ public class ContratoRepositoryImpl implements ContratoRepositoryQuery {
         StringBuilder consulta = new StringBuilder();
         String N = "N";
         LocalDate nullDate = LocalDate.of(1,1,1);
-        System.out.println(nullDate);
-        System.out.println(N);
 
         consulta.append("SELECT DISTINCT new onnet.mkapi.domain.model.dto.ResumoContratoApi(c.id, p.nome, p.tipo_pessoa, coalesce(p.rg, p.ie, ''), p.email, p.telefone01, p.telefone02, p.celular, coalesce(p.nascimento, p.fundacao, :nullDate), p.nomePai, p.nomeMae, c.adesao, c.previsaoVencimento, coalesce(p.cpf, p.cnpj, ''), l.logradouro, p.numero, b.bairro, p.complemento, p.cep, ci.cidade, es.sigla, user.usr_nome, plAcesso.id, plAcesso.descricao, plAcesso.vel_up, plAcesso.vel_down, plAcesso.vlr_mensalidade, pltipo.descricao, fr.dia_vencimento ) ")
                 .append("FROM Contrato c ")
@@ -105,7 +105,7 @@ public class ContratoRepositoryImpl implements ContratoRepositoryQuery {
                 .append("produto.cd_plano = :plano ");
 
         try{
-            return this.manager.createQuery(consulta.toString(), VelocidadeUpDown.class)
+        	return this.manager.createQuery(consulta.toString(), VelocidadeUpDown.class).setMaxResults(1)
                                .setParameter("plano", plano).getSingleResult();
         }catch (NoResultException e){
             VelocidadeUpDown zeroResult = new VelocidadeUpDown("OM" , "OM");

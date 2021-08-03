@@ -1,6 +1,8 @@
 package onnet.mkapi.domain.resource;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import onnet.mkapi.domain.model.dto.ResumoContratoApi;
 import onnet.mkapi.domain.model.dto.VelocidadeUpDown;
@@ -9,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import onnet.mkapi.domain.model.Contrato;
 import onnet.mkapi.domain.repository.ContratoRepository;
 
 @RestController
@@ -33,24 +34,33 @@ public class ContratoResource {
     @CrossOrigin(origins =  "*")
     @GetMapping(path = "/contratoTransfer/{contratoNum}")
     public ResponseEntity<List<ResumoContratoApi>> transferirContratos(@PathVariable("contratoNum") long contratoNum){
+        Date date = new Date();
+
+        System.out.println("----------------- IMPORTAR " + date + " -----------------");
+
         List<ResumoContratoApi> mkContratos = this.contratoRepository.buscarContratoMaior(contratoNum);
         if(mkContratos.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        mkContratos.forEach(contratos -> {
+        mkContratos.forEach((contratos) -> {
             if(contratos.getVelDown() == null && contratos.getVelUp() == null){
                 VelocidadeUpDown velUpDown = this.contratoRepository.buscarVelocidadeUpDown(contratos.getIdPlanoMk());
                 contratos.setVelDown(velUpDown.getVelocidade_down());
                 contratos.setVelUp(velUpDown.getVelocidade_up());
             }
         });
+
         return new ResponseEntity<>(mkContratos, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/update/{contratoNum}")
     public ResponseEntity<ResumoContratoApi> updateContrato(@PathVariable("contratoNum") long contratoNum){
+        Date date = new Date();
+
+        System.out.println("----------------- ATUALIZAR " + date + " -----------------");
+
         ResumoContratoApi updatecontrato = this.contratoRepository.updateContratos(contratoNum);
 
         if(updatecontrato == null){
